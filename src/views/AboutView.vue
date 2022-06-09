@@ -3,9 +3,7 @@
     <h1>Blog</h1>
     <button @click="listar">Listar</button>
     <button @click="agregar">Agregar</button>
-    <div id="prueba">
-      {{info}}
-    </div>
+    <h1>{{infor}}</h1>
   </div>
 </template>
 <script>
@@ -13,10 +11,9 @@ import axios from 'axios'
 export default {
   name:'Blog',
   data(){
-    //let postC = {header:'Content-Type:aplication/json'};
-    //let postC = {header:'Content-Type:aplication/json'};
     return{
-      info:''
+      response:'',
+      infor:''
     }
   },
   methods: {
@@ -24,25 +21,29 @@ export default {
       let config ={
         method: 'get',
         url: 'http://localhost:3000/post',
+        headers: { }
       }
       axios(config)
-      .then(response => (this.info = response.data))
-      .catch(e=>{console.log(e);})
+      .then(function (response) {
+        console.log(JSON.stringify(response.data));
+        this.infor=JSON.stringify(response.data);
+      })
     },
-    async agregar(){
+    agregar(){
+      let dataa = JSON.stringify({
+        "name":"Segundo post",
+        "content":"adios mundo"
+      })
       let config ={
         method: 'post',
         url: 'http://localhost:3000/post',
-        data:{
-          name: "primer post",
-         content: "Hola Mundo"
-        },
-        headers:{'Content-Type':'aplication/json'}
+        headers:{'Content-Type':'aplication/json'},
+        data:dataa 
       }
-      let res = await axios(config)
-      .then(response => (this.info = response)) 
-      .catch(e=>{console.log(e);})
-      console.log(res);
+       axios(config).then(function (response){
+         console.log(JSON.stringify(response.data));
+       })
+    
     }
   }
 }
