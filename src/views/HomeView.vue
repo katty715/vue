@@ -1,25 +1,49 @@
 <template>
-  <div class="">
-     <v-container grid-list-md>
-         <v-layout row wrap>
-             <v-flex xs0 xl6 lg6 md6 sm6>
-                 
-              <v-img src="@/assets/ic.png"></v-img>
-
-             </v-flex>
-               <v-flex xs0 xl6 lg6 md6 sm6>
-
-                   <h2>halo</h2>
-               </v-flex>
-         </v-layout>
-
-     </v-container>
-
- </div>
+    <div class="home">
+        <button @click="cambiar">Cambiar</button>
+        <img :src="laimg" alt="">
+        
+    </div>
 </template>
-
 <script>
-export default{
-  
+export default {
+    name:'Home',
+    props:{
+        msg: String
+    },
+    data(){
+        return{
+            titulo: 'Home',
+            estado: true,
+            laimg: '',
+            img1: 'https://img.freepik.com/vector-gratis/mano-sostiene-cartel-texto-yes-satisfaccion-aceptacion_100456-1882.jpg',
+            img2: 'https://www.ccoo-servicios.es/imagenes/tic/2014-02-18_Comunicado_20_-_NO.png'
+        }
+    },
+    mounted(){
+        if (this.estado==true) {
+            this.laimg = this.img1;
+        } else {
+            this.laimg = this.img2;
+        }
+    },
+    methods:{
+        cambiar() {
+            if (this.estado) {
+                this.estado=false;
+                this.laimg=this.img2; 
+            }else{
+                this.estado=true;
+                this.laimg=this.img1;
+            }
+                       
+            console.log('cambiando estado');
+        }
+    }
 }
 </script>
+<style>
+img{
+    max-width: 30%;
+}
+</style>
