@@ -1,8 +1,9 @@
 <template>
     <div class="home">
-        <button @click="cambiar">Cambiar</button>
-        <img :src="laimg" alt="">
-        
+        <button class="btn" @click="cambiar">Cambiar</button>
+        <div>
+            <img :src="laimg" alt="">
+        </div>
     </div>
 </template>
 <script>
@@ -45,5 +46,16 @@ export default {
 <style>
 img{
     max-width: 30%;
+    border:2px solid;
+}
+.btn{
+    background-color: #4CAF50; /* Green */
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
 }
 </style>

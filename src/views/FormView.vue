@@ -1,6 +1,6 @@
 <template>
   <div class="form">
-    <h1>formulario</h1>
+    <h1>Formulario</h1>
     <input v-model="message" placeholder="Ingrese su nombre">
     <button @click="cap">Mayus</button>
     <h1>{{message2}}</h1>
