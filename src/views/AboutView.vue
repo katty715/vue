@@ -30,20 +30,24 @@ export default {
       })
     },
     agregar(){
-      let dataa = JSON.stringify({
-        "name":"Segundo post",
-        "content":"adios mundo"
-      })
-      let config ={
+      let data = JSON.stringify({
+        "name": "primer post",
+        "content": "Hola Mundo"
+      });
+
+      let config = {
         method: 'post',
         url: 'http://localhost:3000/post',
-        headers:{'Content-Type':'aplication/json'},
-        data:dataa 
-      }
-       axios(config).then(function (response){
-         console.log(JSON.stringify(response.data));
-       })
-    
+        headers: { 
+          'Content-Type': 'application/json'
+        },
+        data : data
+      };
+
+      axios(config)
+      .then(function (response) {
+        console.log(JSON.stringify(response.data));
+      })
     }
   }
 }
