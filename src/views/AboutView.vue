@@ -3,7 +3,8 @@
     <h1>Blog</h1>
     <button @click="listar">Listar</button>
     <button @click="agregar">Agregar</button>
-    <h1>{{infor}}</h1>
+    <button @click="borrar">borrar</button>
+    <h1>{{informe}}</h1>
   </div>
 </template>
 <script>
@@ -12,9 +13,11 @@ export default {
   name:'Blog',
   data(){
     return{
-      response:'',
-      infor:''
+      informe:[]
     }
+  },  
+  created(){
+    this.informe= this.listar();
   },
   methods: {
     listar(){
@@ -24,14 +27,13 @@ export default {
         headers: { }
       }
       axios(config)
-      .then(function (response) {
-        console.log(JSON.stringify(response.data));
-        this.infor=JSON.stringify(response.data);
+      .then(response=>{
+        this.informe=JSON.stringify(response.data)
       })
     },
     agregar(){
       let data = JSON.stringify({
-        "name": "primer post",
+        "name": "segundo post",
         "content": "Hola Mundo"
       });
 
@@ -42,6 +44,18 @@ export default {
           'Content-Type': 'application/json'
         },
         data : data
+      };
+
+      axios(config)
+      .then(function (response) {
+        console.log(JSON.stringify(response.data));
+      })
+    },
+    borrar: function(result, id){
+      let config = {
+        method: 'delete',
+        url: 'http://localhost:3000/post/8',
+        headers: { }
       };
 
       axios(config)
